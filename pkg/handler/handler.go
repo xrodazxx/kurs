@@ -10,19 +10,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	// авторизация аунтефикация
 	auth := router.Group("/auth")
 	{
-		auth.POST("/sign-up")
-		auth.POST("/sign-in")
+		auth.POST("/sign-up", h.signUp)
+		auth.POST("/sign-in", h.signIn)
 	}
 	// маршрутка для устройств
 	api := router.Group("/api")
 	{
 		devices := api.Group("/devices")
 		{
-			devices.POST("/")        // Добавление устройства
-			devices.GET("/")         // Получение Списка Устройств
-			devices.GET("/:id/on")   // Получение Информации о устройстве
-			devices.POST("/:id/on")  // Turn ON
-			devices.POST("/:id/off") // Turn Off
+			devices.POST("/", h.addDevices)            // Добавление устройства
+			devices.GET("/", h.getAllDevices)          // Получение Списка Устройств
+			devices.GET("/:id/on", h.infoDevices)      // Получение Информации о устройстве
+			devices.POST("/:id/on", h.turnOnDevices)   // Turn ON
+			devices.POST("/:id/off", h.turnOffDevices) // Turn Off
 		}
 	}
 	return router
