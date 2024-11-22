@@ -1,8 +1,13 @@
 package service
 
-import "github.com/xrodazxx/App-ToDO/pkg/repository"
+import (
+	kurs "Kurs"
+
+	"github.com/xrodazxx/App-ToDO/pkg/repository"
+)
 
 type Authorization interface {
+	CreateUser(user kurs.User) (int, error)
 }
 type DeviceIot interface {
 }
@@ -15,5 +20,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }

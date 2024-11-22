@@ -1,6 +1,7 @@
 import ()
 
 type Authorization interface {
+	CreateUser(user kurs.User) (int, error)
 }
 type DeviceIot interface {
 }
@@ -13,5 +14,7 @@ type Repository struct {
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		Authorization: NewAuthPostgres(db)
+	}
 }
