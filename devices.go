@@ -15,5 +15,6 @@ type DeviceData struct {
 	Id        int       `json:"id"`        // идентификатор записи данных
 	DeviceId  int       `json:"deviceId"`  // ссылка на устройство (ID)
 	TimeStamp time.Time `json:"timestamp"` // Временная метка
+	DataType  string    `json:"datatype"`  // тип данных
 	Value     float64   `json:"value"`     // какие-либо значение от Устройства (Температура-влажность-износ)
 }
