@@ -8,6 +8,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user kurs.User) (int, error)
+	GenerateToke(username, password string) (string, error)
 }
 type DeviceIot interface {
 }

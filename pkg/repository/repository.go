@@ -1,7 +1,14 @@
-import ()
+package repository
+
+import (
+	kurs "Kurs"
+
+	"github.com/jmoiron/sqlx"
+)
 
 type Authorization interface {
 	CreateUser(user kurs.User) (int, error)
+	GetUser(username, password string) (kurs.User, error)
 }
 type DeviceIot interface {
 }
@@ -15,6 +22,6 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Authorization: NewAuthPostgres(db)
+		Authorization: NewAuthPostgres(db),
 	}
 }
