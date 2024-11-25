@@ -27,7 +27,8 @@ func (s *Server) Run(port string, handler http.Handler, dbDSN string, mqttBroker
 	// Инициализация MQTT
 	s.mqttClient = s.initMQTT(mqttBroker)
 
-	// Запуск сервера
+	// Запуск сервераpackage service
+
 	s.httpServer = &http.Server{
 		Addr:           ":" + port,
 		Handler:        handler,

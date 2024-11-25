@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/xrodazxx/App-ToDO/pkg/handler"
-	"github.com/xrodazxx/App-ToDO/pkg/repository"
-	"github.com/xrodazxx/App-ToDO/pkg/service"
+	"Kurs/pkg/handler"
+	"Kurs/pkg/repository"
+	"Kurs/pkg/service"
 )
 
 func main() {

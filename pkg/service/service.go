@@ -3,12 +3,13 @@ package service
 import (
 	kurs "Kurs"
 
-	"github.com/xrodazxx/App-ToDO/pkg/repository"
+	"Kurs/pkg/repository"
 )
 
 type Authorization interface {
 	CreateUser(user kurs.User) (int, error)
 	GenerateToke(username, password string) (string, error)
+	ParseToken(token string) (int, error)
 }
 type DeviceIot interface {
 }
