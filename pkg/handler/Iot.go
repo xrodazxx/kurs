@@ -1,10 +1,11 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 // добавление устройства
 func (h *Handler) addDevices(c *gin.Context) {
-
 }
 
 // получение устройств

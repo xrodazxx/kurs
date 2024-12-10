@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Device Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Контейнер авторизации -->
+    <div class="container" id="auth-container">
+        <h1>Авторизация</h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Логин" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <p>Нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a></p>
+    </div>
+
+    <!-- Контейнер регистрации -->
+    <div class="container" id="register-container" style="display: none;">
+        <h1>Регистрация</h1>
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Логин" required>
+            <input type="password" id="reg-password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+    </div>
+
+    <!-- Контейнер списка устройств -->
+    <div class="container" id="device-container" style="display: none;">
+        <h1>Список устройств</h1>
+        <div id="device-list"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

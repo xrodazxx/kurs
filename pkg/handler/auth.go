@@ -8,6 +8,7 @@ import (
 )
 
 func (h *Handler) signUp(c *gin.Context) {
+	println("sosat")
 	var input kurs.User
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())

@@ -14,11 +14,11 @@ CREATE TABLE device_iot
     status varchar(255) NOT NULL
 );
 
-CREATE TABLE device_data
-(
-    id serial PRIMARY KEY,
-    deviceId int NOT NULL REFERENCES device_iot(id) ON DELETE CASCADE,
-    timeStamp timestamp NOT NULL,
-    data_type varchar(50) NOT NULL, -- Тип данных (например, температура, влажность)
-    value float NOT NULL
+CREATE TABLE device_data (
+    id SERIAL PRIMARY KEY,
+    device_id VARCHAR(50) NOT NULL,
+    device_name VARCHAR(100),
+    timestamp TIMESTAMP DEFAULT NOW(),
+    data_type VARCHAR(50),
+    value FLOAT8
 );

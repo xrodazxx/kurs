@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - broker
+
+  db:
+    image: postgres
+    container_name: postgres_db
+    ports:
+      - "5436:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sosi
+      - POSTGRES_DB=postgres
+
+  broker:
+    image: eclipse-mosquitto
+    container_name: mosquitto_broker
+    ports:
+      - "1886:1883"
+    volumes:
+    - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-h", "localhost", "-t", "#"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  mqtt-client:
+    image: simka
+    depends_on:
+      broker:
+        condition: service_healthy

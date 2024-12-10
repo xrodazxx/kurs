@@ -26,10 +26,5 @@ func NewPostgresDB(cfg Config) (*sqlx.DB, error) {
 		return nil, err
 	}
 
-	// Проверка подключения к бд
-	if err := db.Ping(); err != nil {
-		return nil, err
-	}
-
 	return db, nil
 }
