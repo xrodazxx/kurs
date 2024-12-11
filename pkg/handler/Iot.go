@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,7 +12,12 @@ func (h *Handler) addDevices(c *gin.Context) {
 
 // получение устройств
 func (h *Handler) getAllDevices(c *gin.Context) {
+	devices, err := h.services.IDevice.Get(c)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch devices"})
+	}
 
+	c.HTML(http.StatusOK, "devices.html", devices)
 }
 
 // информация о устройстве

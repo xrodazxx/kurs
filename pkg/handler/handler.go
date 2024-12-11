@@ -16,6 +16,8 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
+
+	router.LoadHTMLGlob("template/*")
 	// авторизация аунтефикация
 	auth := router.Group("/auth")
 	{
@@ -23,7 +25,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-in", h.signIn)
 	}
 	// маршрутка для устройств
-	api := router.Group("/api", h.userIdentity)
+	api := router.Group("/api") //, h.userIdentity)
 	{
 		devices := api.Group("/devices")
 		{

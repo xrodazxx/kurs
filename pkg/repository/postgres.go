@@ -16,11 +16,9 @@ type Config struct {
 }
 
 func NewPostgresDB(cfg Config) (*sqlx.DB, error) {
-	// строки подключения к бд
 	dsn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode)
 
-	// Открытие подключения к бд
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
 		return nil, err

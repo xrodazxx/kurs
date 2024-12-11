@@ -11,29 +11,36 @@ services:
 
   db:
     image: postgres
-    container_name: postgres_db
     ports:
       - "5436:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=sosi
       - POSTGRES_DB=postgres
+    volumes:
+      - ./schema:/docker-entrypoint-initdb.d 
 
   broker:
     image: eclipse-mosquitto
-    container_name: mosquitto_broker
     ports:
       - "1886:1883"
     volumes:
-    - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_run:/var/run/mosquitto
+      #- mosquitto_log:/var/log/mosquitto
+      - mosquitto_data:/var/lib/mosquitto
     healthcheck:
       test: ["CMD", "mosquitto_sub", "-h", "localhost", "-t", "#"]
       interval: 10s
       timeout: 5s
       retries: 3
+    command: >
+      sh -c "mkdir -p /var/run/mosquitto &&
+             chown mosquitto:mosquitto /var/run/mosquitto &&
+             mosquitto -c /mosquitto/config/mosquitto.conf"
+volumes:
+  mosquitto_run:
+  mosquitto_log:
+  mosquitto_data:
 
-  mqtt-client:
-    image: simka
-    depends_on:
-      broker:
-        condition: service_healthy
+

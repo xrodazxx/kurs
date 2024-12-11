@@ -14,10 +14,12 @@ type Authorization interface {
 
 type Service struct {
 	Authorization
+	IDevice
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
+		IDevice:       NewDevice(repos.IDevice),
 	}
 }

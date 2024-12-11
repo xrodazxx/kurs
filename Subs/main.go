@@ -32,7 +32,7 @@ func saveDeviceData(data DeviceData) error {
 func main() {
 	// Подключение к PostgreSQL
 	var err error
-	db, err = sqlx.Connect("postgres", "user=postgres password=mysecretpassword dbname=mydb sslmode=disable")
+	db, err = sqlx.Open("postgres", "host=localhost port=5436 user=postgres password=sosi dbname=postgres sslmode=disable")
 	if err != nil {
 		log.Fatalf("Ошибка подключения к базе данных: %v", err)
 	}

@@ -16,6 +16,7 @@ WORKDIR /app
 
 RUN apk add --no-cache libc6-compat  
 
+COPY ./template /app/template
 COPY --from=builder /app/cmd/main .
 
 ENTRYPOINT ["./main"]
